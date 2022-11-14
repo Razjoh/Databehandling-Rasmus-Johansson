@@ -22,23 +22,22 @@ class Layout:
         return dbc.Container(
             [
                 dbc.Card(dbc.CardBody(html.H1("Techy stocks viewer")), className="mt-3"),
-
-                dbc.Row([
-                    dbc.Col(html.P("Choose a stock")),
+                dbc.Row(class_name="mt-4",
+                children=[
+                    dbc.Col(html.P("Choose a stock"), className="mt-1"),
 
                     dbc.Col(dcc.Dropdown(
                     id="stockpicker-dropdown",
                     options=self._stock_options_dropdown,
                     value="AAPL",
-                )),
-                
-                    dbc.Col()
+                    ), lg="4"),
+
+                    dbc.Col(dbc.Card(dcc.RadioItems(id="ohlc-radio", options=self._ohlc_options, value="close"))),
                 ]),
 
                 
                 html.P(id = "highest-value"),
                 html.P(id = "lowest-value"),
-                dcc.RadioItems(id="ohlc-radio", options=self._ohlc_options, value="close"),
                 dcc.Graph(id="stock-graph"),
                 dcc.Slider(
                     id="time-slider", min=0, max=6, marks=self._slider_marks, value=2, step=None
