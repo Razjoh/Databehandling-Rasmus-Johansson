@@ -27,7 +27,7 @@ print(df_dict.keys())
 
 # create a Dash apps
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 
 app.layout = Layout(symbol_dict).layout()
 
